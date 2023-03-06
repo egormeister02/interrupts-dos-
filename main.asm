@@ -69,7 +69,7 @@ flag                db 0
 
 New08               proc
                     push si ds es dx cx bx ax
-                    
+                    push dx cx bx ax
                     mov bx, cs
                     mov ds, bx
                     mov bl, 02h
@@ -77,29 +77,28 @@ New08               proc
                     mov ax, 0c06h
                     
                     call Ramka
-                    mov bx, sp
-                    mov ax, ss:[bx]
+                    pop ax
                     mov dx, 4005h
                     call PrintDec
                     mov dx, 3b05h
                     mov ax, offset StrAx
                     call PrintStr
 
-                    mov ax, ss:[bx+2]
+                    pop ax
                     mov dx, 4006h
                     call PrintDec
                     mov dx, 3b06h
                     mov ax, offset StrBx
                     call PrintStr
 
-                    mov ax, ss:[bx+4]
+                    pop ax
                     mov dx, 4007h
                     call PrintDec
                     mov dx, 3b07h
                     mov ax, offset StrCx
                     call PrintStr
 
-                    mov ax, ss:[bx+6]
+                    pop ax
                     mov dx, 4008h
                     call PrintDec
                     mov dx, 3b08h
